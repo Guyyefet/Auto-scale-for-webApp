@@ -18,19 +18,12 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      # profile: "devops_user"
-      # region: "us-east-1"
-
+    defaults:
+      run:
+        working-directory: new-one
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
-          aws-region: us-east-1
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
