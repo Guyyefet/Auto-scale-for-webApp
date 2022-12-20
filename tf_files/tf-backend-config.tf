@@ -8,7 +8,7 @@ terraform {
     # Replace this with your DynamoDB table name!
     dynamodb_table = "terraform-up-and-running-locks"
     encrypt        = true
-     shared_credentials_file = "$HOME/.aws/credentials"
+    #  shared_credentials_file = "$HOME/.aws/credentials"
   }
 }
 
