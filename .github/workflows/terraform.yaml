@@ -29,8 +29,8 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
-        # with:
-        # region: us-east-1 
+        with:
+         aws-region: us-east-1 
         # role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
         
 
