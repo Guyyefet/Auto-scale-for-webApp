@@ -27,13 +27,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
-        with:
-         aws-region: us-east-1 
-         permissions:
-         id-token: write
-         contents: read
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v1-node16
+      #   with:
+      #    aws-region: us-east-1 
+      #    permissions:
+      #    id-token: write
+      #    contents: read
         # role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
         
 
