@@ -45,6 +45,9 @@ jobs:
         run: terraform fmt -check 
         continue-on-error: true 
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Terraform Init
         id: init
         run: |
