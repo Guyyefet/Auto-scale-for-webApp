@@ -21,7 +21,7 @@ jobs:
       AWS_REGION : "us-east-1"
     defaults:
       run:
-        working-directory: tf_files
+        working-directory: new-one/tf_files/
     
     steps:
       - name: Checkout
