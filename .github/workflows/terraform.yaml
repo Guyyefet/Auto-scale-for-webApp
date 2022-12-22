@@ -1,6 +1,7 @@
 name: "Terraform2"
 
 on:
+  # Uncomment to enable staging deploy from main
   push:
     branches:
       - main
