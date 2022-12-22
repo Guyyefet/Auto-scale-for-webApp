@@ -31,12 +31,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v1-node16
-      #   with:
-      #    aws-region: us-east-1 
-      #    role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
-      #    role-session-name: Github_Actions_Role
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+         aws-region: us-east-1 
+         role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
+         role-session-name: Github_Actions_Role
         
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
