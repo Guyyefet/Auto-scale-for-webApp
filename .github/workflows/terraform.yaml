@@ -1,4 +1,4 @@
-name: "Terraform2"
+name: "Terraform"
 
 on:
   # Uncomment to enable staging deploy from main
@@ -52,3 +52,6 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init 
+        # |
+        #  terraform init -backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" -backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
+        #  terraform init --backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" --backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
