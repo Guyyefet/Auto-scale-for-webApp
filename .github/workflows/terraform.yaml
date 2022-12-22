@@ -19,10 +19,10 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION : "us-east-1"
+    # env:
+    #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #   AWS_REGION : "us-east-1"
     defaults:
       run:
         working-directory: ./tf_files
@@ -51,6 +51,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: |
-         terraform init -backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" -backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
-         terraform init --backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" --backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
+        run: terraform init
+        # |
+        #  terraform init -backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" -backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
+        #  terraform init --backend-config="access_key=${{ env.AWS_ACCESS_KEY_ID}}" --backend-config="secret_key=${{ env.AWS_SECRET_ACCESS_KEY}}"
