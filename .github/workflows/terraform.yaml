@@ -1,7 +1,6 @@
 name: "Terraform"
 
 on:
-  # Uncomment to enable staging deploy from main
   push:
     branches:
       - main
@@ -10,7 +9,6 @@ on:
   pull_request:
     branches:
       - main
-
 permissions:
   id-token: write
   contents: read
