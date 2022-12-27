@@ -22,7 +22,7 @@ jobs:
     env:
     #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS-REGION : "us-east-1"
+      aws-region: us-east-1
     defaults:
       run:
         working-directory: .
@@ -34,11 +34,11 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
           role-session-name: Github_Actions_Role
-          AWS-REGION : "us-east-1" 
+          # AWS-REGION : "us-east-1" 
         
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
