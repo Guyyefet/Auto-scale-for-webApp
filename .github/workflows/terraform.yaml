@@ -33,16 +33,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
-        with:
-          role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: GithubActions
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v1-node16
+      #   with:
+      #     role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
+      #     aws-region: ${{ secrets.AWS_REGION }}
+      #     role-session-name: GithubActions
           
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -58,8 +54,8 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-         terraform init -backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate"
-         terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate"
+         terraform init -backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate -backend-config="region=${AWS_REGION}"
+         terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate -backend-config="region=${AWS_REGION}"
 
       - name: Terraform Validate
         id: validate
