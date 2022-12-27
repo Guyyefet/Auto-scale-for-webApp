@@ -1,7 +1,7 @@
 name: "Terraform"
 
 on:
-  push
+  push:
     branches:
       - main
   release:
@@ -9,9 +9,10 @@ on:
   pull_request:
     branches:
       - main
-permissions:
-  id-token: write
-  contents: read
+
+  permissions:
+    id-token: write
+    contents: read
 
  env:
     #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
