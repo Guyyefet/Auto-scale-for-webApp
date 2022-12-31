@@ -30,7 +30,7 @@ jobs:
         working-directory: ./tf_files/
         shell: bash
     
-    # steps:
+    steps:
     #   - name: Checkout
     #     uses: actions/checkout@v3
 
