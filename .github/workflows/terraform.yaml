@@ -30,16 +30,16 @@ jobs:
         working-directory: ./tf_files/
         shell: bash
     
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
-        with:
-          aws-region: us-east-2
-          role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
-          role-session-name: GithubActions
+    #   - name: Configure AWS Credentials
+    #     uses: aws-actions/configure-aws-credentials@v1-node16
+    #     with:
+    #       aws-region: us-east-2
+    #       role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
+    #       role-session-name: GithubActions
           
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -55,8 +55,8 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-         terraform init -backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate -backend-config="region=${{ secrets.AWS_REGION }}"
-         terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate -backend-config="region=${{ secrets.AWS_REGION }}"
+         terraform init -backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate -backend-config="region=us-east-2"
+         terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate -backend-config="region=us-east-2"
 
       # - name: Terraform Validate
       #   id: validate
