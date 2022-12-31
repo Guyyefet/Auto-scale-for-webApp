@@ -15,10 +15,10 @@ permissions:
   id-token: write
   contents: read
 
-env:
+# env:
     # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
+  # AWS_REGION: ${{ secrets.AWS_REGION }}
 
 jobs:
   terraform:
@@ -34,12 +34,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v1-node16
-        # with:
-          # role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
-          # aws-region: ${{ secrets.AWS_REGION }}
-          # role-session-name: GithubActions
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-region: us-east-2
+          role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
+          role-session-name: GithubActions
           
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -72,6 +72,6 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+      # - name: Terraform Apply
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: terraform apply -auto-approve -input=false
