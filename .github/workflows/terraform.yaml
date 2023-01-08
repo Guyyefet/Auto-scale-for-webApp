@@ -18,7 +18,7 @@ permissions:
 env:
   # role-to-assume: ${{ secrets.ROLE_GITHUB_ACTIONS }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  BUCKET_NAME: "terraform-store-state-in-s3-bucket"
+  BUCKET_NAME : "terraform-store-state-in-s3-bucket"
 
 jobs:
   terraform:
@@ -54,8 +54,8 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run:|
-          terraform init -backend-config=${{ secrets.BUCKET_NAME }} -backend-config=${{ secrets.BUCKET_KEY }} -backend-config="region=us-east-1"
+        run: Terraform Init
+          # terraform init -backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate" -backend-config="region=us-east-1"
           # terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate -backend-config="region=us-east-1"
 
       - name: Terraform Validate
