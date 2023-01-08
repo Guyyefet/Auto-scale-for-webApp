@@ -54,7 +54,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init -reconfigure
           # terraform init -reconfigure-backend-config="bucket=terraform-store-state-in-s3-bucket" -backend-config="key=global/s3/terraform.tfstate" -backend-config="region=us-east-1"
           # terraform init --backend-config="bucket=terraform-store-state-in-s3-bucket" --backend-config="key=global/s3/terraform.tfstate -backend-config="region=us-east-1"
 
