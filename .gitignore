@@ -1,2 +1,5 @@
 *.tfstate*
 *.terraform*
+flask app/venv
+flask app/__pycache__
+TODO.txt
