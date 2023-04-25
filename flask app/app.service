@@ -1,0 +1,12 @@
+[Unit]
+Description=app
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/flask-app
+ExecStart=/home/ubuntu/flask-app/venv/bin/flask run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
