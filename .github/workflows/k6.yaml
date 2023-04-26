@@ -1,0 +1,22 @@
+# name: Load-test Workflow
+# on: [push]
+# jobs:
+#   build:
+#     name: Run k6 test
+#     runs-on: ubuntu-latest
+
+#     defaults:
+#       run:
+#         shell: bash
+#         working-directory: ./tests/k6
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+        
+#       - name: Run k6 local test
+#         uses: grafana/k6-action@v0.2.0
+#         with:
+#           filename: load test.js
+          
+
