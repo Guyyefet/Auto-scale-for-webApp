@@ -2,8 +2,8 @@ name: "Terraform"
 
 on:
   push:
-    # paths:
-    #   - "terraform/**"
+    paths:
+      - "terraform/**"
     branches:
       - main
   release:
@@ -26,7 +26,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
+        working-directory: ./terraform
     
     steps:
       - name: Checkout
