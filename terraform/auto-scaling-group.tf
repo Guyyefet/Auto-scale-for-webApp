@@ -13,12 +13,14 @@ data "aws_ami" "last_img" {
     values = ["ebs"]
   }
 }
-# resource "aws_launch_template" "app" {
-#   name                   = "app"
-#   image_id               = "ami-0b5eea76982371e91"
-#   key_name               = "devops"
-#   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-# }
+
+resource "aws_launch_template" "flask_app" {
+  name                   = "flask_app"
+  image_id               = data.aws_ami.last_img.id
+  key_name               = "devops"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+}
 
 # resource "aws_lb_target_group" "app" {
 #   name     = "app"
