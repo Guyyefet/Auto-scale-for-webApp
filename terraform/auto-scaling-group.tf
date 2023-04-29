@@ -14,6 +14,10 @@ data "aws_ami" "last_img" {
   }
 }
 
+output "last_img" {
+  value = data.aws_ami.last_img.id
+}
+
 resource "aws_launch_template" "flask_app" {
   name                   = "flask_app"
   image_id               = data.aws_ami.last_img.id
