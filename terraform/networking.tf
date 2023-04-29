@@ -121,12 +121,12 @@ resource "aws_security_group_rule" "ingress_alb_sg_https_traffic" {
   # cidr_blocks       = ["0.0.0.0/0"]
 # }
 
-resource "aws_security_group_rule" "egress_db_sg_traffic" {
-  type              = "egress"
-  from_port         = 5432
-  to_port           = 5432
-  protocol          = "tcp"
-  security_group_id = aws_security_group.db_sg.id
+# resource "aws_security_group_rule" "egress_db_sg_traffic" {
+#   type              = "egress"
+#   from_port         = 5432
+#   to_port           = 5432
+#   protocol          = "tcp"
+#   security_group_id = aws_security_group.db_sg.id
   # source_security_group_id = aws_security_group.ec2_sg.id
   # cidr_blocks       = ["0.0.0.0/0"]
-}
+# }
