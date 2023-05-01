@@ -24,6 +24,14 @@ resource "aws_launch_template" "flask_app" {
   key_name               = "devops"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+  update_default_version = true
+   monitoring {
+    enabled = true
+  }
+  tags = {
+    name = "test-template"
+    Environment = "dev"
+  }
 }
 
 # resource "aws_lb_target_group" "app" {
