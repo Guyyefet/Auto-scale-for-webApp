@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "app" {
   name     = "app"
   port     = 8080
   protocol = "HTTP"
-  vpc_id   = aws_vpc.dev-vpc.id
+  vpc_id   = data.aws_vpc.dev-vpc.id
 
   health_check {
     enabled             = true
