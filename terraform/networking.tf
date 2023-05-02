@@ -43,10 +43,10 @@ resource "aws_security_group" "alb_sg" {
   vpc_id =  data.aws_vpc.dev-vpc.id
 }
 
-# resource "aws_security_group" "db_sg" {
-#   name   = "db-sg"
-#   vpc_id =  data.aws_vpc.dev-vpc.id
-# }
+resource "aws_security_group" "db_sg" {
+  name   = "db-sg"
+  vpc_id =  data.aws_vpc.dev-vpc.id
+}
 
 resource "aws_security_group_rule" "ingress_ec2_traffic" {
   type                     = "ingress"
