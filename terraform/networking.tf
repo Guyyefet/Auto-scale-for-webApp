@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
   version = "3.18.1"
 
   name = "dev-vpc"
@@ -17,35 +17,35 @@ module "vpc" {
 
 
   tags = {
-    name = "dev-vpc"
+    name        = "dev-vpc"
     Environment = "dev"
   }
 }
 
 data "aws_vpc" "dev-vpc" {
-	filter {
-		name  = "tag:Name"
-		values = ["dev-vpc"]
-	}
+  filter {
+    name   = "tag:Name"
+    values = ["dev-vpc"]
+  }
 }
 
 output "vpc" {
-	value = data.aws_vpc.dev-vpc.id
+  value = data.aws_vpc.dev-vpc.id
 }
 
 resource "aws_security_group" "ec2_sg" {
   name   = "ec2-sg"
-  vpc_id =  data.aws_vpc.dev-vpc.id
+  vpc_id = data.aws_vpc.dev-vpc.id
 }
 
 resource "aws_security_group" "alb_sg" {
   name   = "alb-sg"
-  vpc_id =  data.aws_vpc.dev-vpc.id
+  vpc_id = data.aws_vpc.dev-vpc.id
 }
 
 resource "aws_security_group" "db_sg" {
   name   = "db-sg"
-  vpc_id =  data.aws_vpc.dev-vpc.id
+  vpc_id = data.aws_vpc.dev-vpc.id
 }
 
 resource "aws_security_group_rule" "ingress_ec2_traffic" {
@@ -117,8 +117,8 @@ resource "aws_security_group_rule" "ingress_alb_sg_https_traffic" {
 #   to_port           = 5432
 #   protocol          = "tcp"
 #   security_group_id = aws_security_group.db_sg.id
-  # source_security_group_id = aws_security_group.ec2_sg.id
-  # cidr_blocks       = ["0.0.0.0/0"]
+# source_security_group_id = aws_security_group.ec2_sg.id
+# cidr_blocks       = ["0.0.0.0/0"]
 # }
 
 # resource "aws_security_group_rule" "egress_db_sg_traffic" {
@@ -127,6 +127,6 @@ resource "aws_security_group_rule" "ingress_alb_sg_https_traffic" {
 #   to_port           = 5432
 #   protocol          = "tcp"
 #   security_group_id = aws_security_group.db_sg.id
-  # source_security_group_id = aws_security_group.ec2_sg.id
-  # cidr_blocks       = ["0.0.0.0/0"]
+# source_security_group_id = aws_security_group.ec2_sg.id
+# cidr_blocks       = ["0.0.0.0/0"]
 # }

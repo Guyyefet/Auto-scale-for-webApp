@@ -3,12 +3,12 @@ data "aws_ami" "last_img" {
   most_recent      = true
   owners           = ["self"]
 
-   filter {
+  filter {
     name   = "name"
     values = ["flask-app-*"]
   }
 
-   filter {
+  filter {
     name   = "root-device-type"
     values = ["ebs"]
   }
@@ -22,14 +22,14 @@ resource "aws_launch_template" "flask_app" {
   name                   = "flask_app"
   image_id               = data.aws_ami.last_img.id
   key_name               = "devops"
-  instance_type = "t2.micro"
+  instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   update_default_version = true
-   monitoring {
+  monitoring {
     enabled = true
   }
   tags = {
-    name = "test-template"
+    name        = "test-template"
     Environment = "dev"
   }
 }
