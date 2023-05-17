@@ -60,9 +60,9 @@ resource "aws_autoscaling_group" "app" {
   health_check_type = "EC2"
 
   vpc_zone_identifier = [
-    aws_subnet.private_us_east_1a.id,
-    aws_subnet.private_us_east_1b.id,
-    aws_subnet.private_us_east_1c.id
+    aws_subnet.dev-vpc-private-us-east-1a.id,
+    aws_subnet.dev-vpc-private-us-east-1b.id,
+    aws_subnet.dev-vpc-private-us-east-1c.id
   ]
 
   target_group_arns = [aws_lb_target_group.app.arn]
@@ -102,9 +102,9 @@ resource "aws_lb" "app" {
   security_groups    = [aws_security_group.alb_sg.id]
 
   subnets = [
-    aws_subnet.public_us_east_1a.id,
-    aws_subnet.public_us_east_1b.id,
-    aws_subnet.public_us_east_1c.id
+    aws_subnet.dev-vpc-public-us-east-1a.id,
+    aws_subnet.dev-vpc-public-us-east-1b.id,
+    aws_subnet.dev-vpc-public-us-east-1c.id
   ]
 }
 
