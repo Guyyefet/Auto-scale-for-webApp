@@ -52,19 +52,19 @@ resource "aws_security_group" "alb_sg" {
 # }
 
 resource "aws_security_group_rule" "ingress_ec2_traffic" {
-  type                     = "ingress"
+  type                     = var.ingress
   from_port                = var.ec2_traffic_port
   to_port                  = var.ec2_traffic_port
-  protocol                 = var.network_protocol
+  protocol                 = var.network_protocols[0]
   security_group_id        = aws_security_group.ec2_sg.id
   source_security_group_id = aws_security_group.alb_sg.id
 }
 
 resource "aws_security_group_rule" "ingress_ec2_health_check" {
-  type                     = "ingress"
+  type                     = var.ingress
   from_port                = var.health_check_port
   to_port                  = var.health_check_port
-  protocol                 = var.network_protocol
+  protocol                 = var.network_protocols[0]
   security_group_id        = aws_security_group.ec2_sg.id
   source_security_group_id = aws_security_group.alb_sg.id
 }
@@ -79,34 +79,34 @@ resource "aws_security_group_rule" "ingress_ec2_health_check" {
 # # # }
 
 resource "aws_security_group_rule" "egress_alb_sg_traffic" {
-  type                     = "egress"
+  type                     = var.egress
   from_port                = var.ec2_traffic_port
   to_port                  = var.ec2_traffic_port
-  protocol                 = var.network_protocol
+  protocol                 = var.network_protocols[0]
   security_group_id        = aws_security_group.alb_sg.id
   source_security_group_id = aws_security_group.ec2_sg.id
 }
 
 resource "aws_security_group_rule" "egress_alb_sg_health_check" {
-  type                     = "egress"
+  type                     = var.egress
   from_port                = var.health_check_port
   to_port                  = var.health_check_port
-  protocol                 = var.network_protocol
+  protocol                 = var.network_protocols[0]
   security_group_id        = aws_security_group.alb_sg.id
   source_security_group_id = aws_security_group.ec2_sg.id
 }
 
 resource "aws_security_group_rule" "ingress_alb_sg_http_traffic" {
-  type              = "ingress"
+  type              = var.ingress
   from_port         = var.ingress_alb_port
   to_port           = var.ingress_alb_port
-  protocol          = var.network_protocol
+  protocol          = var.network_protocols[0]
   security_group_id = aws_security_group.alb_sg.id
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
 # resource "aws_security_group_rule" "ingress_alb_sg_https_traffic" {
-#   type              = "ingress"
+#   type              = var.ingress
 #   from_port         = 443
 #   to_port           = 443
 #   protocol          = var.network_protocol
@@ -115,7 +115,7 @@ resource "aws_security_group_rule" "ingress_alb_sg_http_traffic" {
 # }
 
 # resource "aws_security_group_rule" "ingress_db_sg_traffic" {
-#   type              = "ingress"
+#   type              = var.ingress
 #   from_port         = 5432
 #   to_port           = 5432
 #   protocol          = "tcp"
@@ -125,7 +125,7 @@ resource "aws_security_group_rule" "ingress_alb_sg_http_traffic" {
 # }
 
 # resource "aws_security_group_rule" "egress_db_sg_traffic" {
-#   type              = "egress"
+#   type              = var.egress
 #   from_port         = 5432
 #   to_port           = 5432
 #   protocol          = "tcp"
