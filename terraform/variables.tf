@@ -40,17 +40,17 @@ variable "public_subnets" {
 }
 
 variable "ec2_traffic_port" {
-   type = numeric
+   type = number
    default = 8080
 }
 
 variable "health_check_port" {
-   type = numeric
+   type = number
    default = 8081
 }
 
 variable "ingress_alb_port" {
-  type = numeric
+  type = number
   default = 80
 }
 
@@ -58,9 +58,8 @@ variable "ec2_security_group_id" {
   type = string
 }
 
-variable "network_protocol" {
-  type = string
-  default = "tcp"
+variable "network_protocols" {
+  type = list(string)
 }
 
 variable "ingress" {
