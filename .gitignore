@@ -1,5 +1,6 @@
 *.tfstate*
 *.terraform*
+*.vscode*
 flask app/venv
 flask app/__pycache__
 TODO.text
